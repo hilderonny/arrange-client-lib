@@ -7,8 +7,8 @@ install:
   - npm install
 
 script:
-  - npm run minify
   - npm run docs
+  - npm run minify
 
 before_deploy:
   - git config --local user.name "hilderonny"
@@ -30,6 +30,6 @@ jobs:
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
-        file: "arrange-client.min.js"
+        file: "docs/arrange-client.min.js"
         skip_cleanup: true
         overwrite: true

@@ -4,8 +4,8 @@
   "description": "Arrange client library",
   "private": true,
   "scripts": {
-    "minify": "minify arrange-client.js --out-file arrange-client.min.js --mangle.keepClassName",
-    "docs": "jsdoc -d ./docs/ arrange-client.js"
+    "docs": "jsdoc -d ./docs/ arrange-client.js",
+    "minify": "minify arrange-client.js --out-file ./docs/arrange-client.min.js --mangle.keepClassName"
   },
   "repository": {
     "type": "git",
