@@ -1,0 +1,27 @@
+{
+  "name": "client-library",
+  "version": "1.0.0",
+  "description": "Arrange client library",
+  "private": true,
+  "scripts": {
+    "build": "minify arrange-client.js --out-file dist/arrange-client.min.js --mangle.keepClassName"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arrangeplatform/client-library.git"
+  },
+  "keywords": [
+    "arrange",
+    "platform",
+    "client"
+  ],
+  "author": "Ronny Hildebrandt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arrangeplatform/client-library/issues"
+  },
+  "homepage": "https://github.com/arrangeplatform/client-library#readme",
+  "devDependencies": {
+    "babel-minify": "^0.5.0"
+  }
+}
