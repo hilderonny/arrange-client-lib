@@ -13,17 +13,18 @@ script:
 before_deploy:
   - git config --local user.name "hilderonny"
   - git config --local user.email "ronny.hildebrandt@avorium.de"
-  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - git tag "$(date +'%Y%m%d')-$(git log --format=%h -1)"
 
 deploy:
-  provider: pages
+- provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: true
   local-dir: docs
   on:
     branch: master
-  provider: releases
+- provider: releases
   api_key: $GITHUB_TOKEN
   file: "arrange-client.min.js"
   skip_cleanup: true
+  overwrite: true
