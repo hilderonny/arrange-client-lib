@@ -10,6 +10,11 @@ script:
   - npm run minify
   - npm run docs
 
+before_deploy:
+  - git config --local user.name "hilderonny"
+  - git config --local user.email "ronny.hildebrandt@avorium.de"
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+
 deploy:
   provider: pages
   skip-cleanup: true
@@ -18,3 +23,7 @@ deploy:
   local-dir: docs
   on:
     branch: master
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: "arrange-client.min.js"
+  skip_cleanup: true
