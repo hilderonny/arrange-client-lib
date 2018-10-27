@@ -9,6 +9,7 @@ install:
 script:
   - npm run docs
   - npm run minify
+  - cp arrange-client.js docs/
 
 before_deploy:
   - git config --local user.name "hilderonny"
