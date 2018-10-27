@@ -30,7 +30,7 @@
     
         <h2><span class="attribs"><span class="type-signature"></span></span>Arrange<span class="signature">(url)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Arrange client library</div>
+            <div class="class-description">Arrange client library. The instanziation of a new server connection is done via Arrange.connect(url).</div>
         
     
 </header>
@@ -53,7 +53,7 @@
 
 
 <div class="description">
-    Connect to server.
+    Connect to server. Use Arrange.connect() for easier access.
 </div>
 
 
@@ -146,7 +146,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line6">line 6</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -200,7 +200,7 @@
     
 
     
-    <h4 class="name" id=".connect"><span class="type-signature">(async, static) </span>connect<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".connect"><span class="type-signature">(async, static) </span>connect<span class="signature">(url)</span><span class="type-signature"> &rarr; {<a href="Arrange.html">Arrange</a>}</span></h4>
     
 
     
@@ -208,7 +208,7 @@
 
 
 <div class="description">
-    Connect to the server
+    Connect to the given server.
 </div>
 
 
@@ -217,6 +217,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">URL of the server, defaults to window.location at same host</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -252,7 +301,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line132">line 132</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line185">line 185</a>
     </li></ul></dd>
     
 
@@ -275,6 +324,260 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Instance of the arrange server connection
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Arrange.html">Arrange</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var arrangeconnection = await Arrange.connect('myarrangeserverurl');</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="addchild"><span class="type-signature">(async) </span>addchild<span class="signature">(parentdatatypeid, parentobjectid, childdatatypeid, childobjectid)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Create a parent child relation between two objects.
+The parent and child objects must exist in the client of the logged in user.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>parentdatatypeid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Datatype ID of the parent object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>parentobjectid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID of the parent object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>childdatatypeid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Datatype ID of the child object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>childobjectid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ID of the child object</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True, when the parent child relation was created, false otherwise
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -286,7 +589,7 @@
     
 
     
-    <h4 class="name" id="createclient"><span class="type-signature">(async) </span>createclient<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createclient"><span class="type-signature">(async) </span>createclient<span class="signature">(clientname)</span><span class="type-signature"></span></h4>
     
 
     
@@ -294,8 +597,8 @@
 
 
 <div class="description">
-    Creates a client and returns it with an id. When the name contains invalid characters
-(all except lower letters), null is returned.
+    Creates a client and returns it with an id.
+Works only, when logged in as 'admin'.
 </div>
 
 
@@ -304,6 +607,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>clientname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name for the new client. Does not need to be unique and can contain any string.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -339,7 +691,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line20">line 20</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -362,8 +714,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Client object containing an id field or null when the logged in user was not 'admin'.
+</div>
 
 
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>await arrangeconnection.login('admin', 'adminpassword'); // Need to login as admin
+var newclient = await Arrange.createClient('My new client');
+// newclient = {
+//     id: 'generatedid',
+//     name: 'My new client'
+// }</code></pre>
 
 
 
@@ -426,7 +798,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line28">line 28</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -513,7 +885,7 @@ When the datatype or fieldtype does not exist, null is returned.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line36">line 36</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
@@ -547,7 +919,7 @@ When the datatype or fieldtype does not exist, null is returned.
     
 
     
-    <h4 class="name" id="createuser"><span class="type-signature">(async) </span>createuser<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="createuser"><span class="type-signature">(async) </span>createuser<span class="signature">(username, password, clientid)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -555,7 +927,9 @@ When the datatype or fieldtype does not exist, null is returned.
 
 
 <div class="description">
-    Creates an user within the given client.
+    Creates an user within the client where the currently logged in user belongs to. When the 'admin' user
+is logged in, the 'clientid' parameter must be set to define in which client the user should be created.
+Fails when there is already an user with the given username in any client.
 Returns the user without a password but with the generated id.
 When there is no client with the given name, null is returned.
 </div>
@@ -566,6 +940,101 @@ When there is no client with the given name, null is returned.
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>username</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Username to use. Must be unique across all clients. 'admin' is not allowed.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Password for the new user</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>clientid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">When the currently logged in user is 'admin', the new user is created in the client with this id, otherwise this parameter is ignored.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -601,7 +1070,7 @@ When there is no client with the given name, null is returned.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line45">line 45</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -624,8 +1093,45 @@ When there is no client with the given name, null is returned.
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Returns an object with the id of the newly created user or null, when the username is already in use or when the 'admin' user was logged in and there is no client with the given clientid. The password is not returned.
+</div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// Create an user in any client when logged in as 'admin'
+await arrangeconnection.login('admin', 'adminpassword');
+var newuser = await arrangeconnection.createuser('newusername', 'newpassword', 'idoftheclient');
+// newuser = {
+//    id: 'generatedid',
+//    username: 'newusername'
+// }
+// Login as normal user in a client
+await arrangeconnection.login('normalusername', 'userpassword');
+// Create an user in the same client as the logged in user
+var newuser = await arrangeconnection.createuser('newusername', 'newpassword');</code></pre>
 
 
 
@@ -688,7 +1194,7 @@ When there is no datatype of the given id, nothing happens
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line53">line 53</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -776,7 +1282,7 @@ nothing happens.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line62">line 62</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -863,7 +1369,7 @@ When the datatype or object does not exists, nothing happens
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line70">line 70</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -949,7 +1455,7 @@ When the datatype or object does not exists, nothing happens
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line77">line 77</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line119">line 119</a>
     </li></ul></dd>
     
 
@@ -1037,7 +1543,7 @@ contains a very small amount of data, so it can be retrieved all at once.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line100">line 100</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line142">line 142</a>
     </li></ul></dd>
     
 
@@ -1071,7 +1577,7 @@ contains a very small amount of data, so it can be retrieved all at once.
     
 
     
-    <h4 class="name" id="login"><span class="type-signature">(async) </span>login<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="login"><span class="type-signature">(async) </span>login<span class="signature">(username, password)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
     
 
     
@@ -1079,7 +1585,10 @@ contains a very small amount of data, so it can be retrieved all at once.
 
 
 <div class="description">
-    Login an user
+    Login an user. Depending on the username the user is logged in at its
+corresponding client. Only the 'admin' user has special meanings and functions.
+When the user was logged in before, logout() is called automatically, wo that the
+user gets re-logged in. When the relogin fails, the user stays in the state "not logged in".
 </div>
 
 
@@ -1088,6 +1597,78 @@ contains a very small amount of data, so it can be retrieved all at once.
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>username</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Username to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Password of the user</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -1123,7 +1704,7 @@ contains a very small amount of data, so it can be retrieved all at once.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line107">line 107</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -1146,6 +1727,28 @@ contains a very small amount of data, so it can be retrieved all at once.
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True on success, false when the username does not exist or the password is wrong.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -1165,7 +1768,8 @@ contains a very small amount of data, so it can be retrieved all at once.
 
 
 <div class="description">
-    Logout the currently logged in user
+    Logout the currently logged in user by destroying his session. After this call,
+only login can be used to relogin. When the user was not logged in before, nothing happens.
 </div>
 
 
@@ -1209,7 +1813,7 @@ contains a very small amount of data, so it can be retrieved all at once.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line114">line 114</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line163">line 163</a>
     </li></ul></dd>
     
 
@@ -1299,7 +1903,7 @@ The response contains the full object with an id field.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line125">line 125</a>
+        <a href="arrange-client.js.html">arrange-client.js</a>, <a href="arrange-client.js.html#line174">line 174</a>
     </li></ul></dd>
     
 
@@ -1349,7 +1953,7 @@ The response contains the full object with an id field.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Oct 24 2018 07:34:48 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Oct 27 2018 20:19:57 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>
