@@ -1,11 +1,21 @@
 const { expect } = require('chai');
 const { Arrange } = require('./arrange-client');
+const { WebSocket } = require('mock-socket');
+// https://github.com/thoov/mock-socket
+/*
+Das funktioniert nicht, wine Client.-Bibliothek mit NodeJS-Unit-Tests zu prüfen.
+Hier kann man weder require brauchbar verwenden, noch gibt es globale Objekte
+wie window oder navigator oder WebSocket.
+Also doch sowas wie PhantomJS.
+*/
 
 describe('class Arrange', async() => {
 
     describe('connect', async() => {
 
-        xit('Returns null when the given URL is invalid', async() => {
+        it('Returns null when the given URL is invalid', async() => {
+            var arr = Arrange.connect();
+            console.log(arr);
         });
 
         xit('Returns null when the given URL does not target an arrange server', async() => {
