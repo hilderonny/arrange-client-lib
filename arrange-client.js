@@ -31,7 +31,7 @@ class Arrange {
      * @returns Client object containing an id field or null when the logged in user was not 'admin'.
      * @example
      * await arrangeconnection.login('admin', 'adminpassword'); // Need to login as admin
-     * var newclient = await Arrange.createClient('My new client');
+     * var newclient = await arrangeconnection.createClient('My new client');
      * // newclient = {
      * //     id: 'generatedid',
      * //     name: 'My new client'
@@ -42,8 +42,16 @@ class Arrange {
     }
 
     /**
-     * Creates a datatype and returns it with an id. When the name contains invalid characters
-     * (all except lower letters), null is returned.
+     * Creates a datatype and returns it with an id. A corresponding table will be created in
+     * the database of the currently logged in user. 'admin'`s cannot create datatypes.
+     * @param {String} datatypename Name of the datatype
+     * @returns Object containing the id of the created datatype.
+     * @example
+     * var newdatatype = await arrangeconnection.createdatatype('My new datatype');
+     * // newdatatype = {
+     * //     id: 'generatedid',
+     * //     name: 'My new datatype'
+     * // }
      */
     async createdatatype(datatypename) {
         return this.dorequest('createdatatype', { datatypename: datatypename }, 'oncreatedatatype');
@@ -186,4 +194,17 @@ class Arrange {
         return new Arrange(url);
     }
 
+}
+
+/**
+ * Describes possible types of datatype fields.
+ * @memberof Arrange
+ * @enum {String}
+ */
+Arrange.FIELDTYPE = {
+    /** Used for all texts of any length. Value is 'text' */
+    text: 'text',
+    /** Can be true or false. Value is 'boolean' */
+    boolean: 'boolean',
+    number: 'number'
 }

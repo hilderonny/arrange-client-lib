@@ -16,6 +16,9 @@ before_deploy:
   - git config --local user.email "ronny.hildebrandt@avorium.de"
   - git tag "$(date +'%Y%m%d')-$(git log --format=%h -1)"
 
+after_success:
+  - npm run coveralls
+
 jobs:
   include:
     - stage: "Documentation"
