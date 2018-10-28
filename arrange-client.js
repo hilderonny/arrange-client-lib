@@ -8,7 +8,28 @@ class Arrange {
      * @param {String} url URL of the server, defaults to window.location at same host
      */
     constructor(url) {
-        this.websocket = io(url);
+        this.messagehandlers = messagehandlers = {};
+        messagehandlers.prototype.add = (msgtype, handler) => {
+            if (!messagehandlers[msgtype]) messagehandlers[msgtype] = [];
+            messagehandlers[msgtype].push(handler);
+        }
+        messagehandlers.prototype.remove = (msgtype, handler) => {
+            if (!messagehandlers[msgtype]) return;
+            messagehandlers[msgtype].splice(messagehandlers[msgtype].indexOf(handler), 1);
+        }
+        self.websocket = new WebSocket(url);
+        self.websocket.onmessage = (evt) => {
+            try {
+                const msg = JSON.parse(evt.data);
+                const msgtype = msg.type;
+                if (!msgtype) return; // When no message type was set, ignore the message
+                if (!self[msgtype]) return; // When there are not handlers, ignore the message
+                self[msgtype].forEach((handler) => {
+                    handler(msg);
+                });
+            } catch(err) {} // Ignore parsing errors, can be that only text was sent
+
+        }
     }
 
     /**
@@ -126,19 +147,20 @@ class Arrange {
      */
     async dorequest(eventtosend, objecttosend, eventtowaitfor) {
         var ws = this.websocket;
-        return new Promise(function (resolve, reject) {
+        var mh = this.messagehandlers;
+        return new Promise((resolve, reject) => {
             var timeout, callback;
-            timeout = setTimeout(function () {
-                ws.off(eventtowaitfor, callback);
+            timeout = setTimeout(() => {
+                mh.remove(eventtowaitfor, callback);
                 reject();
             }, 2000);
-            callback = function (result) {
+            callback = (result) => {
                 clearTimeout(timeout);
-                ws.off(eventtowaitfor, callback);
-                resolve(result);
+                mh.remove(eventtowaitfor, callback);
+                resolve(result.data);
             };
-            ws.on(eventtowaitfor, callback);
-            ws.emit(eventtosend, objecttosend);
+            mh.add(eventtowaitfor, callback);
+            ws.send(JSON.stringify({ type: eventtosend, data: objecttosend }));
         });
     }
 
@@ -208,3 +230,7 @@ Arrange.FIELDTYPE = {
     boolean: 'boolean',
     number: 'number'
 }
+
+// When used in NodeJS, export the class as module, wo it can be included via:
+// const { Arrange } = require('./arrange-client');
+if (module) module.exports.Arrange = Arrange;

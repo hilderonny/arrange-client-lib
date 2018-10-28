@@ -1,5 +1,5 @@
-const assert = require('assert');
-const arrangeclient = require('./arrange-client');
+const { expect } = require('chai');
+const { Arrange } = require('./arrange-client');
 
 describe('class Arrange', async() => {
 
@@ -15,4 +15,21 @@ describe('class Arrange', async() => {
         });
 
     });
+
+    describe('FIELDTYPE', async() => {
+
+        it('Contains field type "boolean" with value "boolean"', async() => {
+            expect(Arrange.FIELDTYPE.boolean).to.equal('boolean');
+        });
+
+        it('Contains field type "number" with value "number"', async() => {
+            expect(Arrange.FIELDTYPE.number).to.equal('number');
+        });
+
+        it('Contains field type "text" with value "text"', async() => {
+            expect(Arrange.FIELDTYPE.text).to.equal('text');
+        });
+
+    });
+
 });
