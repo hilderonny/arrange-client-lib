@@ -8,23 +8,25 @@ class Arrange {
      * @param {String} url URL of the server, defaults to window.location at same host
      */
     constructor(url) {
-        this.messagehandlers = messagehandlers = {};
-        messagehandlers.prototype.add = (msgtype, handler) => {
+        if (!url && typeof(window) !== 'undefined' && window.location) url = 'wss://' + window.location.hostname;
+        const messagehandlers = {};
+        this.messagehandlers = messagehandlers;
+        messagehandlers.add = (msgtype, handler) => {
             if (!messagehandlers[msgtype]) messagehandlers[msgtype] = [];
             messagehandlers[msgtype].push(handler);
         }
-        messagehandlers.prototype.remove = (msgtype, handler) => {
+        messagehandlers.remove = (msgtype, handler) => {
             if (!messagehandlers[msgtype]) return;
             messagehandlers[msgtype].splice(messagehandlers[msgtype].indexOf(handler), 1);
         }
-        self.websocket = new WebSocket(url);
-        self.websocket.onmessage = (evt) => {
+        this.websocket = new WebSocket(url);
+        this.websocket.onmessage = (evt) => {
             try {
                 const msg = JSON.parse(evt.data);
                 const msgtype = msg.type;
                 if (!msgtype) return; // When no message type was set, ignore the message
-                if (!self[msgtype]) return; // When there are not handlers, ignore the message
-                self[msgtype].forEach((handler) => {
+                if (!messagehandlers[msgtype]) return; // When there are not handlers, ignore the message
+                messagehandlers[msgtype].forEach((handler) => {
                     handler(msg);
                 });
             } catch(err) {} // Ignore parsing errors, can be that only text was sent
