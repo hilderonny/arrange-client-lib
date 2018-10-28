@@ -1,6 +1,7 @@
 # arrange platform client-library
 
 [![Build Status](https://travis-ci.org/arrangeplatform/client-library.svg?branch=master)](https://travis-ci.org/arrangeplatform/client-library)
+[![Coverage Status](https://coveralls.io/repos/github/arrangeplatform/client-library/badge.svg?branch=master)](https://coveralls.io/github/arrangeplatform/client-library?branch=master)
 
 ## Creating a client
 
