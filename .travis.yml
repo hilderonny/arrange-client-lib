@@ -16,6 +16,8 @@ jobs:
     - stage: "Test"
       script: npm test
     - stage: "Documentation"
+      on:
+        branch: master
       script:
       - npm run docs
       - cp arrange-client.js docs/
@@ -28,6 +30,8 @@ jobs:
         on:
           branch: master
     - stage: "Release"
+      on:
+        branch: master
       script:
       - npm run docs
       - npm run minify
@@ -38,5 +42,3 @@ jobs:
         file: "docs/arrange-client.min.js"
         skip_cleanup: true
         overwrite: true
-        on:
-          branch: master
