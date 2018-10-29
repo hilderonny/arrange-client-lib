@@ -16,8 +16,7 @@ jobs:
     - stage: "Test"
       script: npm test
     - stage: "Documentation"
-      on:
-        branch: master
+      if: branch = master
       script:
       - npm run docs
       - cp arrange-client.js docs/
@@ -30,8 +29,7 @@ jobs:
         on:
           branch: master
     - stage: "Release"
-      on:
-        branch: master
+      if: branch = master
       script:
       - npm run docs
       - npm run minify
