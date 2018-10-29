@@ -1,6 +1,3 @@
-const { expect } = require('chai');
-const { Arrange } = require('./arrange-client');
-const { WebSocket } = require('mock-socket');
 // https://github.com/thoov/mock-socket
 /*
 Das funktioniert nicht, wine Client.-Bibliothek mit NodeJS-Unit-Tests zu prüfen.
@@ -9,6 +6,7 @@ wie window oder navigator oder WebSocket.
 Also doch sowas wie PhantomJS.
 
 Besser hier: https://developers.google.com/web/updates/2017/06/headless-karma-mocha-chai#running_it_all_on_travis_ci
+Karma Coverage: https://github.com/karma-runner/karma-coverage
 
 */
 
