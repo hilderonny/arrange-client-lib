@@ -7,6 +7,7 @@ install:
   - npm install
 
 script:
+  - npm test
   - npm run docs
   - npm run minify
   - cp arrange-client.js docs/
@@ -15,9 +16,6 @@ before_deploy:
   - git config --local user.name "hilderonny"
   - git config --local user.email "ronny.hildebrandt@avorium.de"
   - git tag "$(date +'%Y%m%d')-$(git log --format=%h -1)"
-
-after_success:
-  - npm run coveralls
 
 jobs:
   include:
