@@ -232,7 +232,3 @@ Arrange.FIELDTYPE = {
     boolean: 'boolean',
     number: 'number'
 }
-
-// When used in NodeJS, export the class as module, wo it can be included via:
-// const { Arrange } = require('./arrange-client');
-if (module) module.exports.Arrange = Arrange;
