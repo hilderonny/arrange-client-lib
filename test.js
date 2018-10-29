@@ -1,5 +1,3 @@
-// Karma Coverage: https://github.com/karma-runner/karma-coverage, https://github.com/caitp/karma-coveralls, https://github.com/CurtisHumphrey/es6-library-boilerplate/blob/master/karma.config.js
-
 describe('class Arrange', async() => {
 
     describe('connect', async() => {

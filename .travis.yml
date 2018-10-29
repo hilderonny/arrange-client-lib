@@ -28,7 +28,10 @@ jobs:
         on:
           branch: master
     - stage: "Release"
-      script: npm run minify
+      script:
+      - npm run docs
+      - npm run minify
+      - cp arrange-client.js docs/
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
