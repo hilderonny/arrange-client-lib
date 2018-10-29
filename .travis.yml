@@ -6,12 +6,6 @@ node_js:
 install:
   - npm install
 
-script:
-  - npm test
-  - npm run docs
-  - npm run minify
-  - cp arrange-client.js docs/
-
 before_deploy:
   - git config --local user.name "hilderonny"
   - git config --local user.email "ronny.hildebrandt@avorium.de"
@@ -19,7 +13,12 @@ before_deploy:
 
 jobs:
   include:
+    - stage: "Test"
+      script: npm test
     - stage: "Documentation"
+      script:
+      - npm run docs
+      - cp arrange-client.js docs/
       deploy:
         provider: pages
         skip-cleanup: true
@@ -29,6 +28,7 @@ jobs:
         on:
           branch: master
     - stage: "Release"
+      script: npm run minify
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
