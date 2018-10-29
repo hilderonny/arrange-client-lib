@@ -9,7 +9,7 @@ module.exports = function (config) {
     }
     config.set({
         frameworks: ['mocha', 'chai'],
-        files: ['arrange-client.js', 'test.js'],
+        files: ['arrange-client.js', 'test/*.js'],
         reporters: reporters,
         preprocessors: {
             'arrange-client.js': ['coverage']

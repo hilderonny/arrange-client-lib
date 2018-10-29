@@ -38,3 +38,5 @@ jobs:
         file: "docs/arrange-client.min.js"
         skip_cleanup: true
         overwrite: true
+        on:
+          branch: master

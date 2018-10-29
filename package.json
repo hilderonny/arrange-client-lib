@@ -6,10 +6,7 @@
   "scripts": {
     "docs": "jsdoc -d ./docs/ arrange-client.js",
     "minify": "minify arrange-client.js --out-file ./docs/arrange-client.min.js --mangle.keepClassName",
-    "test_": "mocha",
-    "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
-    "cover": "nyc --reporter=text karma start --single-run --browsers ChromeHeadless",
-    "coveralls": "nyc --reporter=lcovonly mocha && cat ./coverage/lcov.info | coveralls"
+    "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js"
   },
   "repository": {
     "type": "git",

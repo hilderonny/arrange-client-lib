@@ -45,7 +45,7 @@ class Arrange {
      * @returns {Boolean} True, when the parent child relation was created, false otherwise
      */
     addchild(parentdatatypeid, parentobjectid, childdatatypeid, childobjectid) {
-        return this.dorequest('addchild', { parentdatatypeid: parentdatatypeid, parentobjectid: parentobjectid, childdatatypeid: childdatatypeid, childobjectid: childobjectid }, 'onaddchild');
+        return this._dorequest('addchild', { parentdatatypeid: parentdatatypeid, parentobjectid: parentobjectid, childdatatypeid: childdatatypeid, childobjectid: childobjectid }, 'onaddchild');
     }
 
     /**
@@ -63,7 +63,7 @@ class Arrange {
      * // }
      */
     createclient(clientname) {
-        return this.dorequest('createclient', { clientname: clientname }, 'oncreateclient');
+        return this._dorequest('createclient', { clientname: clientname }, 'oncreateclient');
     }
 
     /**
@@ -80,7 +80,7 @@ class Arrange {
      * // }
      */
     createdatatype(datatypename) {
-        return this.dorequest('createdatatype', { datatypename: datatypename }, 'oncreatedatatype');
+        return this._dorequest('createdatatype', { datatypename: datatypename }, 'oncreatedatatype');
     }
 
     /**
@@ -89,7 +89,7 @@ class Arrange {
      * @async
      */
     createfield(datatypeid, fieldname, fieldtype) {
-        return this.dorequest('createfield', { datatypeid: datatypeid, fieldname: fieldname, fieldtype: fieldtype }, 'oncreatefield');
+        return this._dorequest('createfield', { datatypeid: datatypeid, fieldname: fieldname, fieldtype: fieldtype }, 'oncreatefield');
     }
 
     /**
@@ -117,11 +117,11 @@ class Arrange {
      * var newuser = await arrangeconnection.createuser('newusername', 'newpassword');
      */
     createuser(username, password, clientid) {
-        return this.dorequest('createuser', { clientid: clientid, username: username, password: password }, 'oncreateuser');
+        return this._dorequest('createuser', { clientid: clientid, username: username, password: password }, 'oncreateuser');
     }
 
     deleteclient(clientid) {
-        return this.dorequest('deleteclient', { clientid: clientid }, 'ondeleteclient');
+        return this._dorequest('deleteclient', { clientid: clientid }, 'ondeleteclient');
     }
 
     /**
@@ -130,7 +130,7 @@ class Arrange {
      * @async
      */
     deletedatatype(datatypeid) {
-        return this.dorequest('deletedatatype', { datatypeid: datatypeid }, 'ondeletedatatype');
+        return this._dorequest('deletedatatype', { datatypeid: datatypeid }, 'ondeletedatatype');
     }
 
     /**
@@ -140,7 +140,7 @@ class Arrange {
      * @async
      */
     deletefield(datatypeid, fieldid) {
-        return this.dorequest('deletefield', { datatypeid: datatypeid, fieldid: fieldid }, 'ondeletedatatype');
+        return this._dorequest('deletefield', { datatypeid: datatypeid, fieldid: fieldid }, 'ondeletedatatype');
     }
 
     /**
@@ -149,14 +149,14 @@ class Arrange {
      * @async
      */
     deleteobject(datatypeid, objectid) {
-        return this.dorequest('deleteobject', { datatypeid: datatypeid, objectid: objectid }, 'ondeleteobject');
+        return this._dorequest('deleteobject', { datatypeid: datatypeid, objectid: objectid }, 'ondeleteobject');
     }
 
     /**
      * Performs a request to the server and waits for the given result event
      * @async
      */
-    dorequest(eventtosend, objecttosend, eventtowaitfor) {
+    _dorequest(eventtosend, objecttosend, eventtowaitfor) {
         var ws = this.websocket;
         var mh = this.messagehandlers;
         return new Promise((resolve, reject) => {
@@ -182,13 +182,13 @@ class Arrange {
      * @async
      */
     getdatatypes() {
-        return this.dorequest('getdatatypes', null, 'ongetdatatypes');
+        return this._dorequest('getdatatypes', null, 'ongetdatatypes');
     }
 
     /**
      * Login an user. Depending on the username the user is logged in at its
      * corresponding client. Only the 'admin' user has special meanings and functions.
-     * When the user was logged in before, logout() is called automatically, wo that the
+     * When the user was logged in before, logout() is called automatically, so that the
      * user gets re-logged in. When the relogin fails, the user stays in the state "not logged in".
      * @async
      * @param {String} username Username to use
@@ -196,7 +196,7 @@ class Arrange {
      * @returns {Boolean} True on success, false when the username does not exist or the password is wrong.
      */
     login(username, password) {
-        return this.dorequest('login', { username: username, password: password }, 'onlogin');
+        return this._dorequest('login', { username: username, password: password }, 'onlogin');
     }
 
     /**
@@ -205,7 +205,7 @@ class Arrange {
      * @async
      */
     logout() {
-        return this.dorequest('logout', null, 'onlogout');
+        return this._dorequest('logout', null, 'onlogout');
     }
 
     /**
@@ -217,7 +217,7 @@ class Arrange {
      * @async
      */
     saveobject(datatypeid, data) {
-        return this.dorequest('saveobject', { datatypeid: datatypeid, data: data }, 'onsaveobject');
+        return this._dorequest('saveobject', { datatypeid: datatypeid, data: data }, 'onsaveobject');
     }
 
     /**
@@ -228,7 +228,11 @@ class Arrange {
      * var arrangeconnection = await Arrange.connect('myarrangeserverurl');
      */
     static connect(url) {
-        return new Arrange(url);
+        try {
+            return new Arrange(url);
+        } catch (err) {
+            return null;
+        }
     }
 
 }
