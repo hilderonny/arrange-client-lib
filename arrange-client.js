@@ -8,7 +8,7 @@ class Arrange {
      * @param {String} url URL of the server, defaults to window.location at same host
      */
     constructor(url) {
-        if (!url && typeof(window) !== 'undefined' && window.location) url = 'wss://' + window.location.hostname;
+        if (!url) url = 'wss://' + window.location.hostname;
         const messagehandlers = {};
         this.messagehandlers = messagehandlers;
         messagehandlers.add = (msgtype, handler) => {
@@ -37,19 +37,21 @@ class Arrange {
     /**
      * Create a parent child relation between two objects.
      * The parent and child objects must exist in the client of the logged in user.
+     * @async
      * @param {String} parentdatatypeid Datatype ID of the parent object
      * @param {String} parentobjectid ID of the parent object
      * @param {String} childdatatypeid Datatype ID of the child object
      * @param {String} childobjectid ID of the child object
      * @returns {Boolean} True, when the parent child relation was created, false otherwise
      */
-    async addchild(parentdatatypeid, parentobjectid, childdatatypeid, childobjectid) {
+    addchild(parentdatatypeid, parentobjectid, childdatatypeid, childobjectid) {
         return this.dorequest('addchild', { parentdatatypeid: parentdatatypeid, parentobjectid: parentobjectid, childdatatypeid: childdatatypeid, childobjectid: childobjectid }, 'onaddchild');
     }
 
     /**
      * Creates a client and returns it with an id.
      * Works only, when logged in as 'admin'.
+     * @async
      * @param {String} clientname Name for the new client. Does not need to be unique and can contain any string.
      * @returns Client object containing an id field or null when the logged in user was not 'admin'.
      * @example
@@ -60,13 +62,14 @@ class Arrange {
      * //     name: 'My new client'
      * // }
      */
-    async createclient(clientname) {
+    createclient(clientname) {
         return this.dorequest('createclient', { clientname: clientname }, 'oncreateclient');
     }
 
     /**
      * Creates a datatype and returns it with an id. A corresponding table will be created in
      * the database of the currently logged in user. 'admin'`s cannot create datatypes.
+     * @async
      * @param {String} datatypename Name of the datatype
      * @returns Object containing the id of the created datatype.
      * @example
@@ -76,15 +79,16 @@ class Arrange {
      * //     name: 'My new datatype'
      * // }
      */
-    async createdatatype(datatypename) {
+    createdatatype(datatypename) {
         return this.dorequest('createdatatype', { datatypename: datatypename }, 'oncreatedatatype');
     }
 
     /**
      * Creates a field for a datatype. Returns the field with the generated id.
      * When the datatype or fieldtype does not exist, null is returned.
+     * @async
      */
-    async createfield(datatypeid, fieldname, fieldtype) {
+    createfield(datatypeid, fieldname, fieldtype) {
         return this.dorequest('createfield', { datatypeid: datatypeid, fieldname: fieldname, fieldtype: fieldtype }, 'oncreatefield');
     }
 
@@ -94,6 +98,7 @@ class Arrange {
      * Fails when there is already an user with the given username in any client.
      * Returns the user without a password but with the generated id.
      * When there is no client with the given name, null is returned.
+     * @async
      * @param {String} username Username to use. Must be unique across all clients. 'admin' is not allowed.
      * @param {String} password Password for the new user
      * @param {String} clientid When the currently logged in user is 'admin', the new user is created in the client with this id, otherwise this parameter is ignored.
@@ -111,19 +116,20 @@ class Arrange {
      * // Create an user in the same client as the logged in user
      * var newuser = await arrangeconnection.createuser('newusername', 'newpassword');
      */
-    async createuser(username, password, clientid) {
+    createuser(username, password, clientid) {
         return this.dorequest('createuser', { clientid: clientid, username: username, password: password }, 'oncreateuser');
     }
 
-    async deleteclient(clientid) {
+    deleteclient(clientid) {
         return this.dorequest('deleteclient', { clientid: clientid }, 'ondeleteclient');
     }
 
     /**
      * Delete a datatype and its corresponding database table.
      * When there is no datatype of the given id, nothing happens
+     * @async
      */
-    async deletedatatype(datatypeid) {
+    deletedatatype(datatypeid) {
         return this.dorequest('deletedatatype', { datatypeid: datatypeid }, 'ondeletedatatype');
     }
 
@@ -131,23 +137,26 @@ class Arrange {
      * Delete a field of an object. All data of all objects in this field will be lost.
      * The field will be removed from the database table. When there is no field or datatype with the given id,
      * nothing happens.
+     * @async
      */
-    async deletefield(datatypeid, fieldid) {
+    deletefield(datatypeid, fieldid) {
         return this.dorequest('deletefield', { datatypeid: datatypeid, fieldid: fieldid }, 'ondeletedatatype');
     }
 
     /**
      * Deletes an object of the given datatype and id.
      * When the datatype or object does not exists, nothing happens
+     * @async
      */
-    async deleteobject(datatypeid, objectid) {
+    deleteobject(datatypeid, objectid) {
         return this.dorequest('deleteobject', { datatypeid: datatypeid, objectid: objectid }, 'ondeleteobject');
     }
 
     /**
      * Performs a request to the server and waits for the given result event
+     * @async
      */
-    async dorequest(eventtosend, objecttosend, eventtowaitfor) {
+    dorequest(eventtosend, objecttosend, eventtowaitfor) {
         var ws = this.websocket;
         var mh = this.messagehandlers;
         return new Promise((resolve, reject) => {
@@ -170,8 +179,9 @@ class Arrange {
      * Returns all datatypes with their fields. There is no need to obtain
      * information about special datatypes or fields separately because this call
      * contains a very small amount of data, so it can be retrieved all at once.
+     * @async
      */
-    async getdatatypes() {
+    getdatatypes() {
         return this.dorequest('getdatatypes', null, 'ongetdatatypes');
     }
 
@@ -180,19 +190,21 @@ class Arrange {
      * corresponding client. Only the 'admin' user has special meanings and functions.
      * When the user was logged in before, logout() is called automatically, wo that the
      * user gets re-logged in. When the relogin fails, the user stays in the state "not logged in".
+     * @async
      * @param {String} username Username to use
      * @param {String} password Password of the user
      * @returns {Boolean} True on success, false when the username does not exist or the password is wrong.
      */
-    async login(username, password) {
+    login(username, password) {
         return this.dorequest('login', { username: username, password: password }, 'onlogin');
     }
 
     /**
      * Logout the currently logged in user by destroying his session. After this call,
      * only login can be used to relogin. When the user was not logged in before, nothing happens.
+     * @async
      */
-    async logout() {
+    logout() {
         return this.dorequest('logout', null, 'onlogout');
     }
 
@@ -202,8 +214,9 @@ class Arrange {
      * Otherwise a new object will be created.
      * Only those fields get updated which are contained in the data.
      * The response contains the full object with an id field.
+     * @async
      */
-    async saveobject(datatypeid, data) {
+    saveobject(datatypeid, data) {
         return this.dorequest('saveobject', { datatypeid: datatypeid, data: data }, 'onsaveobject');
     }
 
@@ -214,7 +227,7 @@ class Arrange {
      * @example
      * var arrangeconnection = await Arrange.connect('myarrangeserverurl');
      */
-    static async connect(url) {
+    static connect(url) {
         return new Arrange(url);
     }
 
