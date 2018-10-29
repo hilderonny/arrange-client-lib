@@ -2,6 +2,11 @@
 
 [![Build Status](https://travis-ci.org/arrangeplatform/client-library.svg?branch=master)](https://travis-ci.org/arrangeplatform/client-library)
 [![Coverage Status](https://coveralls.io/repos/github/arrangeplatform/client-library/badge.svg?branch=master)](https://coveralls.io/github/arrangeplatform/client-library?branch=master)
+[![Inline docs](https://inch-ci.org/github/arrangeplatform/client-library.svg?branch=master)](https://inch-ci.org/github/arrangeplatform/client-library)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dded5b14a388feb941bb/maintainability)](https://codeclimate.com/github/arrangeplatform/client-library/maintainability)
+[![dependencies Status](https://david-dm.org/arrangeplatform/client-library/status.svg)](https://david-dm.org/arrangeplatform/client-library)
+[![devDependencies Status](https://david-dm.org/arrangeplatform/client-library/dev-status.svg)](https://david-dm.org/arrangeplatform/client-library?type=dev)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/arrangeplatform/client-library/issues)
 
 ## Creating a client
 
