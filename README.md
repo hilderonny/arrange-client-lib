@@ -12,6 +12,8 @@
 
 New clients can only be created by the 'admin' user.
 
+[arrange-client.min.js](https://arrangeplatform.github.io/client-library/arrange-client.min.js)
+
 ```js
 // Connect to Arrange server
 var arrangeconnection = await Arrange.connect('urlofarrangeserver');
