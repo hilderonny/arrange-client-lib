@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "docs": "jsdoc -d ./docs/ arrange-client.js",
-    "minify": "minify arrange-client.js --out-file ./docs/arrange-client.min.js --mangle.keepClassName",
+    "minify": "minify arrange-client.js --out-file ./arrange-client.min.js --mangle.keepClassName",
     "test_": "mocha",
     "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
     "cover": "nyc --reporter=text karma start --single-run --browsers ChromeHeadless",
