@@ -12,7 +12,7 @@
 
 New clients can only be created by the 'admin' user.
 
-[arrange-client.min.js](https://arrangeplatform.github.io/client-library/arrange-client.min.js)
+[arrange-client.min.js](https://arrange.avorium.de/arrange-client.min.js)
 
 ```js
 // Connect to Arrange server
